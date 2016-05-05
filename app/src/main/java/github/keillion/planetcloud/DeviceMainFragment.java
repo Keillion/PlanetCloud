@@ -16,7 +16,9 @@ public class DeviceMainFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_device_main, container, false);
+
         Toast.makeText(getActivity(),"here is device!",Toast.LENGTH_LONG).show();
+
         view.findViewById(R.id.navbtn_device_main_favorite).setOnClickListener(this);
         view.findViewById(R.id.navbtn_device_main_frequent).setOnClickListener(this);
         view.findViewById(R.id.navbtn_device_main_room).setOnClickListener(this);
@@ -24,26 +26,26 @@ public class DeviceMainFragment extends Fragment implements View.OnClickListener
         view.findViewById(R.id.navbtn_device_main_add).setOnClickListener(this);
 
         setDefaultFragment();
+
         return view;
     }
 
     private void setDefaultFragment(){
-        FragmentManager fm=getFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
-        ft.replace(R.id.content_main,new SceneMainFragment());
+        FragmentTransaction ft=getFragmentManager().beginTransaction();
+        ft.replace(R.id.content_device_main,new DeviceFavoriateFragment());
         ft.commit();
     }
 
     @Override
     public void onClick(View v) {
-        FragmentManager fm=getFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
+        FragmentTransaction ft=getFragmentManager().beginTransaction();
         switch (v.getId()){
             case R.id.navbtn_device_main_favorite:
                 ft.replace(R.id.content_main,null);
                 break;
             case R.id.navbtn_device_main_frequent:
                 ft.replace(R.id.content_main,null);
+                ft.commit();
                 break;
             case R.id.navbtn_device_main_room:
                 ft.replace(R.id.content_main,null);
@@ -55,6 +57,6 @@ public class DeviceMainFragment extends Fragment implements View.OnClickListener
                 ft.replace(R.id.content_main,null);
                 break;
         }
-
+        ft.commit();
     }
 }
